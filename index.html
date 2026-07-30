@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>遵义师范学院一校一信息知识库</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand"><span class="mark">遵</span>遵义师范学院&nbsp;一校一信息知识库</div>
+    <nav class="main-nav" id="mainNav">
+      <ul>
+        <li><a href="index.html" class="active">首页</a></li>
+        <li><a href="admission.html">招生</a></li>
+        <li><a href="freshman.html">新生</a></li>
+        <li><a href="campus.html">校园</a></li>
+        <li><a href="academic.html">学业</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+    </nav>
+    <button class="hamburger" id="hamburgerBtn" aria-label="菜单"><span></span></button>
+  </div>
+</header>
+
+<div id="top"></div>
+
+<section class="banner">
+  <h1>遵义师范学院一校一信息知识库</h1>
+  <p class="subtitle">校园信息智能服务平台</p>
+  <div class="slogan">
+    <span>招生・入学</span><span>校园生活</span><span>学业发展</span><span>办事指南</span>
+  </div>
+</section>
+
+<section class="search-section">
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="搜索：宿舍 / 奖学金 / 四六级">
+    <button id="searchBtn">搜索</button>
+  </div>
+  <p class="search-hint">输入关键词即可在左侧知识库中实时筛选相关条目</p>
+  <div class="no-result" id="noResult">暂无相关内容，换个关键词试试～</div>
+</section>
+
+<div class="layout">
+
+  <!-- 左侧功能菜单 -->
+  <aside>
+    <p class="sidebar-heading">知识库分类</p>
+
+    <div class="menu-card" data-keywords="招生 报考 专业 学费 政策 录取 分数线">
+      <div class="menu-card-head">
+        <div class="menu-icon">🎓</div>
+        <div class="menu-title-wrap">
+          <div class="menu-title">招生报考</div>
+          <div class="menu-sub">专业、学费、政策</div>
+        </div>
+        <div class="menu-caret">▾</div>
+      </div>
+      <div class="menu-card-body">
+        <ul>
+          <li><a href="admission.html#majors">专业设置与招生计划</a></li>
+          <li><a href="admission.html#fees">学费与住宿费标准</a></li>
+          <li><a href="admission.html#policy">招生政策与录取规则</a></li>
+          <li><a href="admission.html#consult">报考咨询方式</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="menu-card" data-keywords="新生 报到 缴费 档案 入学">
+      <div class="menu-card-head">
+        <div class="menu-icon">🧳</div>
+        <div class="menu-title-wrap">
+          <div class="menu-title">新生指南</div>
+          <div class="menu-sub">报到、缴费、档案</div>
+        </div>
+        <div class="menu-caret">▾</div>
+      </div>
+      <div class="menu-card-body">
+        <ul>
+          <li><a href="freshman.html#checkin">开学报到流程</a></li>
+          <li><a href="freshman.html#payment">学费缴纳方式</a></li>
+          <li><a href="freshman.html#archive">档案与户籍办理</a></li>
+          <li><a href="freshman.html#checklist">入学物品清单</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="menu-card" data-keywords="校园 宿舍 食堂 地图 生活">
+      <div class="menu-card-head">
+        <div class="menu-icon">🏫</div>
+        <div class="menu-title-wrap">
+          <div class="menu-title">校园生活</div>
+          <div class="menu-sub">宿舍、食堂、地图</div>
+        </div>
+        <div class="menu-caret">▾</div>
+      </div>
+      <div class="menu-card-body">
+        <ul>
+          <li><a href="campus.html#dorm">宿舍分配与设施</a></li>
+          <li><a href="campus.html#canteen">食堂与周边餐饮</a></li>
+          <li><a href="campus.html#map">校园地图与交通</a></li>
+          <li><a href="campus.html#card">校园卡与网络</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="menu-card" data-keywords="学业 考试 考研 竞赛 四六级 成长">
+      <div class="menu-card-head">
+        <div class="menu-icon">📚</div>
+        <div class="menu-title-wrap">
+          <div class="menu-title">学业成长</div>
+          <div class="menu-sub">考试、考研、竞赛</div>
+        </div>
+        <div class="menu-caret">▾</div>
+      </div>
+      <div class="menu-card-body">
+        <ul>
+          <li><a href="academic.html#cet">四六级与等级考试</a></li>
+          <li><a href="academic.html#postgrad">考研与升学指导</a></li>
+          <li><a href="academic.html#contest">学科竞赛与奖学金</a></li>
+          <li><a href="academic.html#warning">学业预警与帮扶</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="menu-card" data-keywords="faq 常见问题 查询">
+      <div class="menu-card-head">
+        <div class="menu-icon">❓</div>
+        <div class="menu-title-wrap">
+          <div class="menu-title">FAQ</div>
+          <div class="menu-sub">常见问题查询</div>
+        </div>
+        <div class="menu-caret">▾</div>
+      </div>
+      <div class="menu-card-body">
+        <ul>
+          <li><a href="faq.html#admission">招生相关问题</a></li>
+          <li><a href="faq.html#academic">学业相关问题</a></li>
+          <li><a href="faq.html#campus">校园生活问题</a></li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+  <!-- 右侧内容展示区 -->
+  <main class="content-panel">
+
+    <div class="section-block">
+      <h2><span class="bar"></span>招生报考</h2>
+      <p>汇总各专业招生计划、学费住宿费标准及当年录取政策，帮助考生与家长提前了解报考信息。</p>
+      <div class="tag-row"><span>专业目录</span><span>学费标准</span><span>录取规则</span><span>招生计划</span></div>
+      <a class="read-more" href="admission.html">查看完整内容 →</a>
+    </div>
+
+    <div class="section-block">
+      <h2><span class="bar"></span>新生指南</h2>
+      <p>覆盖开学报到、学费缴纳、户籍档案转移等新生入学必备事项，一步步引导顺利完成入学手续。</p>
+      <div class="tag-row"><span>报到流程</span><span>缴费方式</span><span>档案办理</span></div>
+      <a class="read-more" href="freshman.html">查看完整内容 →</a>
+    </div>
+
+    <div class="section-block">
+      <h2><span class="bar"></span>校园生活</h2>
+      <p>宿舍分配、食堂与周边餐饮、校园地图与班车路线等实用生活信息，助力新生快速融入校园。</p>
+      <div class="tag-row"><span>宿舍</span><span>食堂</span><span>校园地图</span><span>校园卡</span></div>
+      <a class="read-more" href="campus.html">查看完整内容 →</a>
+    </div>
+
+    <div class="section-block">
+      <h2><span class="bar"></span>学业成长</h2>
+      <p>四六级与等级考试安排、考研升学指导、学科竞赛及奖学金评定信息，助力学业规划与发展。</p>
+      <div class="tag-row"><span>四六级</span><span>考研指导</span><span>学科竞赛</span><span>奖学金</span></div>
+      <a class="read-more" href="academic.html">查看完整内容 →</a>
+    </div>
+
+    <div class="section-block">
+      <h2><span class="bar"></span>FAQ 常见问题</h2>
+      <p>整理转专业申请、校园卡补办、成绩查询等高频问题解答，遇到疑问可先在此查找答案。</p>
+      <div class="tag-row"><span>转专业</span><span>校园卡</span><span>成绩查询</span></div>
+      <a class="read-more" href="faq.html">查看完整内容 →</a>
+    </div>
+
+  </main>
+</div>
+
+<footer>
+  <p class="foot-title">遵义师范学院一校一信息知识库平台</p>
+  <p>贵州省遵义市新蒲新区大学城&nbsp;&nbsp;|&nbsp;&nbsp;服务时间：周一至周五 8:30–17:30</p>
+  <p>
+    <a href="#top">返回学校官网</a>
+    <span class="divider">·</span>
+    <a href="#top">黔ICP备XXXXXXXX号</a>
+  </p>
+</footer>
+
+<button class="to-top" id="toTopBtn" aria-label="回到顶部">↑</button>
+
+<script src="assets/main.js"></script>
+</body>
+</html>
