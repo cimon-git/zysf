@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>遵义师范学院一校一信息知识库</title>
+<style>
+  :root{
+    --red: #9E1A22;
+    --red-dark: #7A1319;
+    --red-tint: #FBEEEF;
+    --grey-bg: #f5f5f5;
+    --ink: #111111;
+    --body: #444444;
+    --line: #e6e2dd;
+    --paper: #ffffff;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  body{
+    font-family: "Source Han Sans SC","Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+    background: var(--paper);
+    color: var(--body);
+    line-height:1.6;
+  }
+
+  a{color:inherit;text-decoration:none;}
+  ul{list-style:none;}
+  button{font-family:inherit;cursor:pointer;border:none;}
+
+  /* ============ 顶部导航 ============ */
+  header.topbar{
+    background: var(--red);
+    position: sticky;
+    top:0;
+    z-index: 100;
+    box-shadow: 0 1px 0 rgba(0,0,0,.08);
+  }
+  .topbar-inner{
+    max-width:1180px;
+    margin:0 auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding: 0 24px;
+    height:56px;
+  }
+  .brand{
+    color:#fff;
+    font-weight:700;
+    font-size:15px;
+    letter-spacing:.5px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    white-space:nowrap;
+  }
+  .brand .mark{
+    width:26px;height:26px;
+    border:1.5px solid #fff;
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-size:12px;
+    flex-shrink:0;
+  }
+  nav.main-nav ul{
+    display:flex;
+    gap:4px;
+  }
+  nav.main-nav a{
+    display:inline-block;
+    color: rgba(255,255,255,.88);
+    font-size:14.5px;
+    padding: 18px 16px;
+    position:relative;
+    transition: color .18s ease, background .18s ease;
+  }
+  nav.main-nav a::after{
+    content:"";
+    position:absolute;
+    left:16px;right:16px;bottom:12px;
+    height:2px;
+    background:#fff;
+    transform: scaleX(0);
+    transform-origin:center;
+    transition: transform .2s ease;
+  }
+  nav.main-nav a:hover{ color:#fff; background: rgba(255,255,255,.08); }
+  nav.main-nav a:hover::after{ transform: scaleX(1); }
+
+  .hamburger{
+    display:none;
+    width:34px;height:34px;
+    background:transparent;
+    position:relative;
+  }
+  .hamburger span, .hamburger span::before, .hamburger span::after{
+    content:"";
+    position:absolute;
+    left:7px;right:7px;
+    height:2px;
+    background:#fff;
+  }
+  .hamburger span{ top:16px; }
+  .hamburger span::before{ top:-8px; }
+  .hamburger span::after{ top:8px; }
+
+  /* ============ Banner ============ */
+  .banner{
+    background:
+      linear-gradient(180deg, var(--red-tint) 0%, #ffffff 100%);
+    border-bottom:1px solid var(--line);
+    padding: 56px 24px 40px;
+    text-align:center;
+  }
+  .banner h1{
+    font-size: 32px;
+    color: var(--ink);
+    font-weight:800;
+    letter-spacing:.5px;
+  }
+  .banner .subtitle{
+    margin-top:10px;
+    font-size:15px;
+    color: var(--body);
+  }
+  .banner .slogan{
+    margin-top:18px;
+    display:inline-flex;
+    gap:0;
+    font-size:13px;
+    color: var(--red);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    padding: 8px 0;
+  }
+  .banner .slogan span{
+    padding: 0 14px;
+    border-right:1px solid var(--line);
+  }
+  .banner .slogan span:last-child{ border-right:none; }
+
+  /* ============ 搜索区 ============ */
+  .search-section{
+    max-width: 640px;
+    margin: -20px auto 0;
+    padding: 0 24px 44px;
+    position:relative;
+  }
+  .search-box{
+    display:flex;
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow: 0 6px 20px rgba(158,26,34,.08);
+    overflow:hidden;
+  }
+  .search-box input{
+    flex:1;
+    border:none;
+    outline:none;
+    padding: 14px 18px;
+    font-size:14.5px;
+    color: var(--ink);
+    background:transparent;
+  }
+  .search-box input::placeholder{ color:#9a9a9a; }
+  .search-box button{
+    background: var(--red);
+    color:#fff;
+    padding: 0 26px;
+    font-size:14.5px;
+    font-weight:600;
+    transition: background .18s ease;
+  }
+  .search-box button:hover{ background: var(--red-dark); }
+  .search-hint{
+    margin-top:10px;
+    font-size:12.5px;
+    color:#9a9a9a;
+    text-align:center;
+  }
+  .no-result{
+    display:none;
+    margin-top:12px;
+    text-align:center;
+    font-size:13px;
+    color: var(--red);
+    background: var(--red-tint);
+    border:1px solid #f2d6d8;
+    border-radius:8px;
+    padding:10px;
+  }
+  .no-result.show{ display:block; }
+
+  /* ============ 主体布局 ============ */
+  .layout{
+    max-width:1180px;
+    margin: 0 auto;
+    padding: 0 24px 64px;
+    display:grid;
+    grid-template-columns: 300px 1fr;
+    gap: 28px;
+  }
+
+  .sidebar-heading{
+    font-size:12px;
+    letter-spacing: 2px;
+    color:#9a9a9a;
+    margin-bottom:14px;
+    text-transform:uppercase;
+  }
+
+  .menu-card{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:12px;
+    margin-bottom:14px;
+    overflow:hidden;
+    transition: border-color .18s ease, box-shadow .18s ease;
+  }
+  .menu-card:hover{
+    border-color:#e3b9bc;
+    box-shadow: 0 4px 16px rgba(158,26,34,.06);
+  }
+  .menu-card.hidden{ display:none; }
+
+  .menu-card-head{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:16px 18px;
+    cursor:pointer;
+    user-select:none;
+  }
+  .menu-card-head:hover{ background: var(--grey-bg); }
+
+  .menu-icon{
+    width:36px;height:36px;
+    border-radius:9px;
+    background: var(--red-tint);
+    color: var(--red);
+    display:flex;align-items:center;justify-content:center;
+    font-size:17px;
+    flex-shrink:0;
+  }
+  .menu-title-wrap{ flex:1; }
+  .menu-title{
+    font-size:15.5px;
+    font-weight:700;
+    color: var(--ink);
+  }
+  .menu-sub{
+    font-size:12px;
+    color:#9a9a9a;
+    margin-top:2px;
+  }
+  .menu-caret{
+    color:#c4c4c4;
+    font-size:12px;
+    transition: transform .22s ease;
+    flex-shrink:0;
+  }
+  .menu-card.collapsed .menu-caret{ transform: rotate(-90deg); }
+
+  .menu-card-body{
+    max-height:220px;
+    overflow:hidden;
+    transition: max-height .25s ease;
+    border-top:1px solid var(--line);
+  }
+  .menu-card.collapsed .menu-card-body{
+    max-height:0;
+    border-top-color:transparent;
+  }
+  .menu-card-body ul{ padding: 6px 0; }
+  .menu-card-body a{
+    display:block;
+    padding: 10px 18px 10px 66px;
+    font-size:13.5px;
+    color: var(--body);
+    transition: background .15s ease, color .15s ease;
+  }
+  .menu-card-body a:hover{
+    background: var(--red-tint);
+    color: var(--red);
+  }
+  .menu-card-body a.dim{ display:none; }
+
+  /* ============ 右侧内容区 ============ */
+  .content-panel{
+    background: var(--grey-bg);
+    border:1px solid var(--line);
+    border-radius:12px;
+    min-height:520px;
+    padding: 40px 32px;
+  }
+  .content-panel .section-block{
+    scroll-margin-top: 76px;
+    padding-bottom:34px;
+    margin-bottom:34px;
+    border-bottom:1px dashed var(--line);
+  }
+  .content-panel .section-block:last-child{
+    border-bottom:none;
+    margin-bottom:0;
+    padding-bottom:0;
+  }
+  .section-block h2{
+    font-size:19px;
+    color: var(--ink);
+    font-weight:700;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:10px;
+  }
+  .section-block h2 .bar{
+    width:4px;height:16px;
+    background: var(--red);
+    border-radius:2px;
+    display:inline-block;
+  }
+  .section-block p{
+    font-size:14px;
+    color: var(--body);
+  }
+  .tag-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:14px;
+  }
+  .tag-row span{
+    background:#fff;
+    border:1px solid var(--line);
+    color: var(--body);
+    font-size:12.5px;
+    padding: 5px 12px;
+    border-radius:999px;
+  }
+
+  /* ============ 页脚 ============ */
+  footer{
+    background: var(--ink);
+    color: #bdbdbd;
+    padding: 32px 24px;
+    text-align:center;
+    font-size:12.5px;
+    line-height:2;
+  }
+  footer .foot-title{ color:#fff; font-weight:700; font-size:13.5px; }
+  footer a:hover{ color:#fff; }
+  footer .divider{ margin:0 8px; color:#555; }
+
+  /* ============ 回到顶部 ============ */
+  .to-top{
+    position:fixed;
+    right:26px; bottom:26px;
+    width:44px;height:44px;
+    border-radius:50%;
+    background: var(--red);
+    color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    font-size:18px;
+    box-shadow: 0 6px 18px rgba(158,26,34,.35);
+    opacity:0; pointer-events:none;
+    transform: translateY(10px);
+    transition: opacity .22s ease, transform .22s ease, background .18s ease;
+  }
+  .to-top.show{ opacity:1; pointer-events:auto; transform:translateY(0); }
+  .to-top:hover{ background: var(--red-dark); }
+
+  /* ============ 响应式 ============ */
+  @media (max-width: 860px){
+    .layout{ grid-template-columns: 1fr; }
+    nav.main-nav{
+      display:none;
+      position:absolute;
+      top:56px; left:0; right:0;
+      background: var(--red-dark);
+      flex-direction:column;
+    }
+    nav.main-nav.open{ display:flex; }
+    nav.main-nav ul{ flex-direction:column; width:100%; }
+    nav.main-nav a{ padding:14px 24px; }
+    nav.main-nav a::after{ display:none; }
+    .hamburger{ display:block; }
+    .banner h1{ font-size:24px; }
+    .content-panel{ padding: 26px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand"><span class="mark">遵</span>遵义师范学院&nbsp;一校一信息知识库</div>
+    <nav class="main-nav" id="mainNav">
+      <ul>
+        <li><a href="#top">首页</a></li>
+        <li><a href="#cat-admission">招生</a></li>
+        <li><a href="#cat-freshman">新生</a></li>
+        <li><a href="#cat-campus">校园</a></li>
+        <li><a href="#cat-academic">学业</a></li>
+        <li><a href="#cat-faq">FAQ</a></li>
+      </ul>
+    </nav>
+    <button class="hamburger" id="hamburgerBtn" aria-label="菜单"><span></span></button>
+  </div>
+</header>
+
+<div id="top"></div>
+
+<section class="banner">
+  <h1>遵义师范学院一校一信息知识库</h1>
+  <p class="subtitle">校园信息智能服务平台</p>
+  <div class="slogan">
+    <span>招生・入学</span><span>校园生活</span><span>学业发展</span><span>办事指南</span>
+  </div>
+</section>
+
+<section class="search-section">
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="搜索：宿舍 / 奖学金 / 四六级">
+    <button id="searchBtn">搜索</button>
+  </div>
+  <p class="search-hint">输入关键词即可在左侧知识库中实时筛选相关条目</p>
+  <div class="no-result" id="noResult">暂无相关内容，换个关键词试试～</div>
+</section>
+
+<div class="layout">
+
+  <!-- 左侧功能菜单 -->
+  <aside>
+    <p class="sidebar-heading">知识库分类</p>
+
+    <div class="menu-card" id="cat-admission" data-keywords="招生 报考 专业 学费 政策 录取 分数线">
+      <div class="menu-card-head">
+        <div class="menu-icon">🎓</div>
+        <div class="menu-title-wrap">
+          <div class="menu-title">招生报考</div>
+          <div class="menu-sub">专业、学费、政策</div>
+        </div>
+        <div class="menu-caret">▾</div>
+      </div>
+      <div class="menu-card-body">
+        <ul>
+          <li><a href="#cat-admission">专业设置与招生计划</a></li>
+          <li><a href="#cat-admission">学费与住宿费标准</a></li>
+          <li><a href="#cat-admission">招生政策与录取规则</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="menu-card" id="cat-freshman" data-keywords="新生 报到 缴费 档案 入学">
+      <div class="menu-card-head">
+        <div class="menu-icon">🧳</div>
+        <div class="menu-title-wrap">
+          <div class="menu-title">新生指南</div>
+          <div class="menu-sub">报到、缴费、档案</div>
+        </div>
+        <div class="menu-caret">▾</div>
+      </div>
+      <div class="menu-card-body">
+        <ul>
+          <li><a href="#cat-freshman">开学报到流程</a></li>
+          <li><a href="#cat-freshman">学费缴纳方式</a></li>
+          <li><a href="#cat-freshman">档案与户籍办理</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="menu-card" id="cat-campus" data-keywords="校园 宿舍 食堂 地图 生活">
+      <div class="menu-card-head">
+        <div class="menu-icon">🏫</div>
+        <div class="menu-title-wrap">
+          <div class="menu-title">校园生活</div>
+          <div class="menu-sub">宿舍、食堂、地图</div>
+        </div>
+        <div class="menu-caret">▾</div>
+      </div>
+      <div class="menu-card-body">
+        <ul>
+          <li><a href="#cat-campus">宿舍分配与设施</a></li>
+          <li><a href="#cat-campus">食堂与周边餐饮</a></li>
+          <li><a href="#cat-campus">校园地图与交通</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="menu-card" id="cat-academic" data-keywords="学业 考试 考研 竞赛 四六级 成长">
+      <div class="menu-card-head">
+        <div class="menu-icon">📚</div>
+        <div class="menu-title-wrap">
+          <div class="menu-title">学业成长</div>
+          <div class="menu-sub">考试、考研、竞赛</div>
+        </div>
+        <div class="menu-caret">▾</div>
+      </div>
+      <div class="menu-card-body">
+        <ul>
+          <li><a href="#cat-academic">四六级与等级考试</a></li>
+          <li><a href="#cat-academic">考研与升学指导</a></li>
+          <li><a href="#cat-academic">学科竞赛与奖学金</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="menu-card" id="cat-faq" data-keywords="faq 常见问题 查询">
+      <div class="menu-card-head">
+        <div class="menu-icon">❓</div>
+        <div class="menu-title-wrap">
+          <div class="menu-title">FAQ</div>
+          <div class="menu-sub">常见问题查询</div>
+        </div>
+        <div class="menu-caret">▾</div>
+      </div>
+      <div class="menu-card-body">
+        <ul>
+          <li><a href="#cat-faq">如何申请转专业</a></li>
+          <li><a href="#cat-faq">如何补办校园卡</a></li>
+          <li><a href="#cat-faq">奖学金评定标准</a></li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+  <!-- 右侧内容展示区 -->
+  <main class="content-panel">
+
+    <div class="section-block">
+      <h2><span class="bar"></span>招生报考</h2>
+      <p>汇总各专业招生计划、学费住宿费标准及当年录取政策，帮助考生与家长提前了解报考信息。</p>
+      <div class="tag-row"><span>专业目录</span><span>学费标准</span><span>录取规则</span><span>招生计划</span></div>
+    </div>
+
+    <div class="section-block">
+      <h2><span class="bar"></span>新生指南</h2>
+      <p>覆盖开学报到、学费缴纳、户籍档案转移等新生入学必备事项，一步步引导顺利完成入学手续。</p>
+      <div class="tag-row"><span>报到流程</span><span>缴费方式</span><span>档案办理</span></div>
+    </div>
+
+    <div class="section-block">
+      <h2><span class="bar"></span>校园生活</h2>
+      <p>宿舍分配、食堂与周边餐饮、校园地图与班车路线等实用生活信息，助力新生快速融入校园。</p>
+      <div class="tag-row"><span>宿舍</span><span>食堂</span><span>校园地图</span><span>校车时刻</span></div>
+    </div>
+
+    <div class="section-block">
+      <h2><span class="bar"></span>学业成长</h2>
+      <p>四六级与等级考试安排、考研升学指导、学科竞赛及奖学金评定信息，助力学业规划与发展。</p>
+      <div class="tag-row"><span>四六级</span><span>考研指导</span><span>学科竞赛</span><span>奖学金</span></div>
+    </div>
+
+    <div class="section-block">
+      <h2><span class="bar"></span>FAQ 常见问题</h2>
+      <p>整理转专业申请、校园卡补办、成绩查询等高频问题解答，遇到疑问可先在此查找答案。</p>
+      <div class="tag-row"><span>转专业</span><span>校园卡</span><span>成绩查询</span></div>
+    </div>
+
+  </main>
+</div>
+
+<footer>
+  <p class="foot-title">遵义师范学院一校一信息知识库平台</p>
+  <p>贵州省遵义市新蒲新区大学城&nbsp;&nbsp;|&nbsp;&nbsp;服务时间：周一至周五 8:30–17:30</p>
+  <p>
+    <a href="#top">返回学校官网</a>
+    <span class="divider">·</span>
+    <a href="#top">黔ICP备XXXXXXXX号</a>
+  </p>
+</footer>
+
+<button class="to-top" id="toTopBtn" aria-label="回到顶部">↑</button>
+
+<script>
+  // 汉堡菜单
+  const hamburgerBtn = document.getElementById('hamburgerBtn');
+  const mainNav = document.getElementById('mainNav');
+  hamburgerBtn.addEventListener('click', () => {
+    mainNav.classList.toggle('open');
+  });
+  mainNav.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => mainNav.classList.remove('open'));
+  });
+
+  // 菜单折叠展开
+  document.querySelectorAll('.menu-card-head').forEach(head => {
+    head.addEventListener('click', () => {
+      head.parentElement.classList.toggle('collapsed');
+    });
+  });
+
+  // 搜索筛选
+  const searchInput = document.getElementById('searchInput');
+  const searchBtn = document.getElementById('searchBtn');
+  const noResult = document.getElementById('noResult');
+  const cards = document.querySelectorAll('.menu-card');
+
+  function runSearch(){
+    const kw = searchInput.value.trim().toLowerCase();
+    let visibleCount = 0;
+
+    cards.forEach(card => {
+      const keywords = (card.dataset.keywords || '').toLowerCase();
+      const titleText = card.querySelector('.menu-title').textContent.toLowerCase();
+      const subText = card.querySelector('.menu-sub').textContent.toLowerCase();
+      const links = card.querySelectorAll('.menu-card-body a');
+
+      let cardMatches = false;
+
+      if(kw === ''){
+        card.classList.remove('hidden');
+        card.classList.remove('collapsed');
+        links.forEach(a => a.classList.remove('dim'));
+        cardMatches = true;
+      } else {
+        const headMatch = keywords.includes(kw) || titleText.includes(kw) || subText.includes(kw);
+        let anyLinkMatch = false;
+
+        links.forEach(a => {
+          const linkMatch = a.textContent.toLowerCase().includes(kw);
+          if(linkMatch) anyLinkMatch = true;
+          a.classList.toggle('dim', !(linkMatch || headMatch));
+        });
+
+        cardMatches = headMatch || anyLinkMatch;
+        card.classList.toggle('hidden', !cardMatches);
+        if(cardMatches) card.classList.remove('collapsed');
+      }
+
+      if(cardMatches) visibleCount++;
+    });
+
+    noResult.classList.toggle('show', visibleCount === 0);
+  }
+
+  searchBtn.addEventListener('click', runSearch);
+  searchInput.addEventListener('input', runSearch);
+  searchInput.addEventListener('keydown', e => { if(e.key === 'Enter') runSearch(); });
+
+  // 回到顶部
+  const toTopBtn = document.getElementById('toTopBtn');
+  window.addEventListener('scroll', () => {
+    toTopBtn.classList.toggle('show', window.scrollY > 400);
+  });
+  toTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // 导航锚点平滑滚动
+  document.querySelectorAll('nav.main-nav a, .search-hint').forEach(a=>{});
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const id = a.getAttribute('href');
+      const target = document.querySelector(id);
+      if(target){
+        e.preventDefault();
+        window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - 66, behavior:'smooth' });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
