@@ -1,203 +1,73 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>遵义师范学院一校一信息知识库</title>
-<link rel="stylesheet" href="assets/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>遵义师范学院 | 一校一信息库</title>
+  <style>
+    :root { --ink:#17222b; --muted:#64727b; --paper:#f8f7f3; --line:#d9dfdc; --green:#0b6b61; --deep:#073d39; --coral:#ed765f; --gold:#e9b950; }
+    *{box-sizing:border-box} body{margin:0;font-family:"Microsoft YaHei","PingFang SC",sans-serif;color:var(--ink);background:var(--paper);line-height:1.6} button,input{font:inherit}
+    .top{background:var(--deep);color:#fff;min-height:370px;position:relative;overflow:hidden}.top:after{content:"";position:absolute;width:540px;height:540px;border:1px solid rgba(255,255,255,.13);border-radius:50%;right:-130px;top:-210px;box-shadow:0 0 0 46px rgba(255,255,255,.04),0 0 0 92px rgba(255,255,255,.025)}
+    nav,.hero,main,.foot-inner{width:min(1160px,calc(100% - 40px));margin:auto;position:relative;z-index:1}nav{height:70px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.18)}.brand{display:flex;gap:12px;align-items:center;font-weight:700}.seal{width:34px;height:34px;border:2px solid #e9c66e;border-radius:50%;display:grid;place-items:center;font-size:14px;color:#e9c66e}.version{font-size:13px;color:#d9ebe7}
+    .hero{padding:56px 0 65px}.eyebrow{font-size:13px;color:#e9c66e;letter-spacing:1px}.hero h1{font-family:Georgia,"Songti SC",serif;letter-spacing:0;margin:8px 0 12px;font-size:42px;line-height:1.15}.hero p{margin:0;max-width:650px;color:#d9ebe7}.search{margin-top:28px;background:#fff;display:flex;align-items:center;max-width:660px;height:54px;padding:0 10px 0 18px;box-shadow:0 12px 30px rgba(0,0,0,.15)}.search span{color:var(--green);font-size:19px}.search input{border:0;outline:0;flex:1;padding:0 12px;color:var(--ink);min-width:0}.search button{border:0;background:var(--coral);color:#fff;padding:10px 17px;cursor:pointer;font-weight:700}
+    main{padding:32px 0 70px}.quick{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:-61px;position:relative;z-index:2}.quick button{border:1px solid var(--line);border-radius:3px;background:#fff;padding:17px 14px;text-align:left;cursor:pointer;transition:.2s;color:var(--ink)}.quick button:hover,.quick button.active{border-color:var(--green);background:#eef6f4;transform:translateY(-2px)}.quick strong{display:block;font-size:15px}.quick small{display:block;color:var(--muted);margin-top:3px}
+    .section-head{display:flex;align-items:end;justify-content:space-between;margin:46px 0 16px}.section-head h2{margin:0;font-size:25px;letter-spacing:0}.section-head p{margin:0;color:var(--muted);font-size:13px}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.card{background:#fff;border:1px solid var(--line);padding:20px;min-height:185px;border-radius:4px}.tag{font-size:12px;font-weight:700;color:var(--green)}.card h3{margin:8px 0;font-size:18px;letter-spacing:0}.card p{font-size:14px;color:var(--muted);margin:0}.card a{display:inline-block;color:var(--green);font-size:13px;font-weight:700;margin-top:12px;text-decoration:none}
+    .workspace{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;margin-top:18px}.panel{background:#fff;border:1px solid var(--line);border-radius:4px}.panel-title{padding:18px 20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}.panel-title h3{margin:0;font-size:18px}.count{font-size:12px;color:var(--muted)}.checklist{padding:6px 20px 15px}.check{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid #eef0ee;cursor:pointer}.check:last-child{border:0}.check input{accent-color:var(--green);width:17px;flex:0 0 17px}.check b{display:block;font-size:14px}.check span{display:block;color:var(--muted);font-size:12px}.notice{background:#fff8e7;border:1px solid #eed396;border-radius:4px;padding:16px 18px;margin-top:14px;color:#64511e;font-size:13px}.notice b{display:block;margin-bottom:4px}
+    .faq{padding:2px 20px 14px}.faq details{border-bottom:1px solid #edf0ee}.faq summary{padding:14px 0;cursor:pointer;font-weight:700;font-size:14px}.faq p{color:var(--muted);font-size:13px;margin:0 0 14px}.result{display:none;margin-top:30px}.result.show{display:block}.result-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.result-item{padding:16px;background:#fff;border-left:3px solid var(--coral);font-size:14px}.hidden{display:none!important}
+    footer{background:#edf1ee;border-top:1px solid var(--line);color:var(--muted);font-size:12px}.foot-inner{padding:22px 0;display:flex;justify-content:space-between;gap:16px}.source{color:var(--green);font-weight:700}
+    @media(max-width:780px){.top{min-height:355px}.hero h1{font-size:31px}.quick{grid-template-columns:repeat(2,1fr)}.cards,.result-grid{grid-template-columns:1fr}.workspace{grid-template-columns:1fr}.section-head{align-items:start;gap:8px;flex-direction:column}.version{display:none}.foot-inner{display:block}.foot-inner p{margin:6px 0}}
+  </style>
 </head>
 <body>
-
-<header class="topbar">
-  <div class="topbar-inner">
-    <div class="brand"><span class="mark">遵</span>遵义师范学院&nbsp;一校一信息知识库</div>
-    <nav class="main-nav" id="mainNav">
-      <ul>
-        <li><a href="index.html" class="active">首页</a></li>
-        <li><a href="admission.html">招生</a></li>
-        <li><a href="freshman.html">新生</a></li>
-        <li><a href="campus.html">校园</a></li>
-        <li><a href="academic.html">学业</a></li>
-        <li><a href="faq.html">FAQ</a></li>
-      </ul>
-    </nav>
-    <button class="hamburger" id="hamburgerBtn" aria-label="菜单"><span></span></button>
-  </div>
-</header>
-
-<div id="top"></div>
-
-<section class="banner">
-  <h1>遵义师范学院一校一信息知识库</h1>
-  <p class="subtitle">校园信息智能服务平台</p>
-  <div class="slogan">
-    <span>招生・入学</span><span>校园生活</span><span>学业发展</span><span>办事指南</span>
-  </div>
-</section>
-
-<section class="search-section">
-  <div class="search-box">
-    <input type="text" id="searchInput" placeholder="搜索：宿舍 / 奖学金 / 四六级">
-    <button id="searchBtn">搜索</button>
-  </div>
-  <p class="search-hint">输入关键词即可在左侧知识库中实时筛选相关条目</p>
-  <div class="no-result" id="noResult">暂无相关内容，换个关键词试试～</div>
-</section>
-
-<div class="layout">
-
-  <!-- 左侧功能菜单 -->
-  <aside>
-    <p class="sidebar-heading">知识库分类</p>
-
-    <div class="menu-card" data-keywords="招生 报考 专业 学费 政策 录取 分数线">
-      <div class="menu-card-head">
-        <div class="menu-icon">🎓</div>
-        <div class="menu-title-wrap">
-          <div class="menu-title">招生报考</div>
-          <div class="menu-sub">专业、学费、政策</div>
-        </div>
-        <div class="menu-caret">▾</div>
+  <header class="top">
+    <nav><div class="brand"><div class="seal">遵师</div><span>遵义师范学院 · 信息库</span></div><span class="version">2026 版 · 每年 9 月更新</span></nav>
+    <div class="hero"><div class="eyebrow">ZUNYI NORMAL UNIVERSITY / KNOWLEDGE BASE</div><h1>把校园信息，放在一处。</h1><p>面向准新生与在校生的办事知识库。招生、报到、住宿、学业与校园服务，一次查清。</p><div class="search"><span>⌕</span><input id="search" type="search" placeholder="搜索：学费、宿舍、转专业、报到、图书馆..." /><button id="searchBtn">查询</button></div></div>
+  </header>
+  <main>
+    <section class="quick" aria-label="快速入口">
+      <button data-filter="招生"><strong>招生报考</strong><small>专业、学费、录取与政策</small></button>
+      <button data-filter="报到"><strong>新生报到</strong><small>材料、缴费、迎新与交通</small></button>
+      <button data-filter="校园"><strong>校园生活</strong><small>宿舍、食堂、场馆与出行</small></button>
+      <button data-filter="学业"><strong>学习发展</strong><small>选课、证书、竞赛与升学</small></button>
+    </section>
+    <section id="info">
+      <div class="section-head"><div><h2>高频信息</h2><p>从手册中提取的核心固定信息</p></div><p>点击卡片查看对应入口</p></div>
+      <div class="cards" id="cards">
+        <article class="card" data-tags="招生 学费 住宿费 专业"><span class="tag">招生报考</span><h3>学费与学制</h3><p>普通本科 4 年，专升本 2 年，硕士 3 年。农林类 3830 元/年；师范、经管、心理类 4100 元/年。</p><a href="https://www.zync.edu.cn/zsxx/" target="_blank" rel="noreferrer">进入招生官网 →</a></article>
+        <article class="card" data-tags="报到 材料 迎新 档案"><span class="tag">新生报到</span><h3>报到材料清单</h3><p>录取通知书、身份证、高考准考证、15 天内肺结核筛查报告；密封学籍档案不得自行拆封。</p><a href="#checklist">查看报到流程 ↓</a></article>
+        <article class="card" data-tags="校园 宿舍 热水 门禁"><span class="tag">校园生活</span><h3>住宿与门禁</h3><p>全校为 4 人间上床下桌，独立卫浴。热水供应至 23:30；宿舍门禁为 23:30 至次日 6:30。</p><a href="#faq">查看常见问题 ↓</a></article>
+        <article class="card" data-tags="学业 选课 教务 喜鹊儿"><span class="tag">学习发展</span><h3>选课与学分</h3><p>每学期第 16 周开放下学期选课。毕业最低学分通常为 140-160 分，以专业培养方案为准。</p><a href="#faq">查看学业问答 ↓</a></article>
+        <article class="card" data-tags="转专业 申请 教务"><span class="tag">教务办理</span><h3>转专业规则</h3><p>大一下学期 5-6 月统一申报。艺体、定向、校企计算机、专升本学生不可互转；挂科或处分者无资格。</p><a href="#faq">查看限制条件 ↓</a></article>
+        <article class="card" data-tags="电话 联系 招生 教务 后勤"><span class="tag">校内服务</span><h3>常用联系方式</h3><p>招生办：学生中心 415；0851-28927462。教务处：行政楼 224；0851-28924875。</p><a href="#faq">展开服务问答 ↓</a></article>
       </div>
-      <div class="menu-card-body">
-        <ul>
-          <li><a href="admission.html#majors">专业设置与招生计划</a></li>
-          <li><a href="admission.html#fees">学费与住宿费标准</a></li>
-          <li><a href="admission.html#policy">招生政策与录取规则</a></li>
-          <li><a href="admission.html#consult">报考咨询方式</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="menu-card" data-keywords="新生 报到 缴费 档案 入学">
-      <div class="menu-card-head">
-        <div class="menu-icon">🧳</div>
-        <div class="menu-title-wrap">
-          <div class="menu-title">新生指南</div>
-          <div class="menu-sub">报到、缴费、档案</div>
-        </div>
-        <div class="menu-caret">▾</div>
-      </div>
-      <div class="menu-card-body">
-        <ul>
-          <li><a href="freshman.html#checkin">开学报到流程</a></li>
-          <li><a href="freshman.html#payment">学费缴纳方式</a></li>
-          <li><a href="freshman.html#archive">档案与户籍办理</a></li>
-          <li><a href="freshman.html#checklist">入学物品清单</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="menu-card" data-keywords="校园 宿舍 食堂 地图 生活">
-      <div class="menu-card-head">
-        <div class="menu-icon">🏫</div>
-        <div class="menu-title-wrap">
-          <div class="menu-title">校园生活</div>
-          <div class="menu-sub">宿舍、食堂、地图</div>
-        </div>
-        <div class="menu-caret">▾</div>
-      </div>
-      <div class="menu-card-body">
-        <ul>
-          <li><a href="campus.html#dorm">宿舍分配与设施</a></li>
-          <li><a href="campus.html#canteen">食堂与周边餐饮</a></li>
-          <li><a href="campus.html#map">校园地图与交通</a></li>
-          <li><a href="campus.html#card">校园卡与网络</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="menu-card" data-keywords="学业 考试 考研 竞赛 四六级 成长">
-      <div class="menu-card-head">
-        <div class="menu-icon">📚</div>
-        <div class="menu-title-wrap">
-          <div class="menu-title">学业成长</div>
-          <div class="menu-sub">考试、考研、竞赛</div>
-        </div>
-        <div class="menu-caret">▾</div>
-      </div>
-      <div class="menu-card-body">
-        <ul>
-          <li><a href="academic.html#cet">四六级与等级考试</a></li>
-          <li><a href="academic.html#postgrad">考研与升学指导</a></li>
-          <li><a href="academic.html#contest">学科竞赛与奖学金</a></li>
-          <li><a href="academic.html#warning">学业预警与帮扶</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="menu-card" data-keywords="faq 常见问题 查询">
-      <div class="menu-card-head">
-        <div class="menu-icon">❓</div>
-        <div class="menu-title-wrap">
-          <div class="menu-title">FAQ</div>
-          <div class="menu-sub">常见问题查询</div>
-        </div>
-        <div class="menu-caret">▾</div>
-      </div>
-      <div class="menu-card-body">
-        <ul>
-          <li><a href="faq.html#admission">招生相关问题</a></li>
-          <li><a href="faq.html#academic">学业相关问题</a></li>
-          <li><a href="faq.html#campus">校园生活问题</a></li>
-        </ul>
-      </div>
-    </div>
-  </aside>
-
-  <!-- 右侧内容展示区 -->
-  <main class="content-panel">
-
-    <div class="section-block">
-      <h2><span class="bar"></span>招生报考</h2>
-      <p>汇总各专业招生计划、学费住宿费标准及当年录取政策，帮助考生与家长提前了解报考信息。</p>
-      <div class="tag-row"><span>专业目录</span><span>学费标准</span><span>录取规则</span><span>招生计划</span></div>
-      <a class="read-more" href="admission.html">查看完整内容 →</a>
-    </div>
-
-    <div class="section-block">
-      <h2><span class="bar"></span>新生指南</h2>
-      <p>覆盖开学报到、学费缴纳、户籍档案转移等新生入学必备事项，一步步引导顺利完成入学手续。</p>
-      <div class="tag-row"><span>报到流程</span><span>缴费方式</span><span>档案办理</span></div>
-      <a class="read-more" href="freshman.html">查看完整内容 →</a>
-    </div>
-
-    <div class="section-block">
-      <h2><span class="bar"></span>校园生活</h2>
-      <p>宿舍分配、食堂与周边餐饮、校园地图与班车路线等实用生活信息，助力新生快速融入校园。</p>
-      <div class="tag-row"><span>宿舍</span><span>食堂</span><span>校园地图</span><span>校园卡</span></div>
-      <a class="read-more" href="campus.html">查看完整内容 →</a>
-    </div>
-
-    <div class="section-block">
-      <h2><span class="bar"></span>学业成长</h2>
-      <p>四六级与等级考试安排、考研升学指导、学科竞赛及奖学金评定信息，助力学业规划与发展。</p>
-      <div class="tag-row"><span>四六级</span><span>考研指导</span><span>学科竞赛</span><span>奖学金</span></div>
-      <a class="read-more" href="academic.html">查看完整内容 →</a>
-    </div>
-
-    <div class="section-block">
-      <h2><span class="bar"></span>FAQ 常见问题</h2>
-      <p>整理转专业申请、校园卡补办、成绩查询等高频问题解答，遇到疑问可先在此查找答案。</p>
-      <div class="tag-row"><span>转专业</span><span>校园卡</span><span>成绩查询</span></div>
-      <a class="read-more" href="faq.html">查看完整内容 →</a>
-    </div>
-
+    </section>
+    <section class="workspace">
+      <div><div class="panel" id="checklist"><div class="panel-title"><h3>新生报到清单</h3><span class="count" id="progress">0 / 6 已完成</span></div><div class="checklist">
+        <label class="check"><input type="checkbox"><div><b>准备证件与照片</b><span>通知书、身份证、准考证、证件照及复印件</span></div></label>
+        <label class="check"><input type="checkbox"><div><b>完成线上预报到</b><span>通过通知书二维码或官方微信智慧迎新平台</span></div></label>
+        <label class="check"><input type="checkbox"><div><b>确认档案交接方式</b><span>高中邮寄或本人报到时交学生处，严禁拆封</span></div></label>
+        <label class="check"><input type="checkbox"><div><b>办理缴费或绿色通道</b><span>线上缴费、银行卡扣费或现场窗口；困难学生可先注册</span></div></label>
+        <label class="check"><input type="checkbox"><div><b>规划抵校交通</b><span>高铁站乘 302 路，客运总站乘 307 路，自驾导航新蒲校区</span></div></label>
+        <label class="check"><input type="checkbox"><div><b>军训前参加入学体检</b><span>由校医院统一组织，建立新生健康档案</span></div></label>
+      </div></div><div class="notice"><b>重要提醒</b>报到无特殊情况需按时完成；因病或灾害延迟，应提前向招生办书面请假。</div></div>
+      <div class="panel" id="faq"><div class="panel-title"><h3>常见问答</h3><span class="count">FAQ</span></div><div class="faq">
+        <details open><summary>助学贷款不够覆盖学费怎么办？</summary><p>到资助中心登记，剩余部分可按学期缓缴，无滞纳金。生源地或校园地助学贷款最高 20000 元/年。</p></details>
+        <details><summary>宿舍可以自备床帘和小台灯吗？</summary><p>床帘允许，但不得遮挡消防通道；LED 低压小台灯合规，大功率灯具禁止。</p></details>
+        <details><summary>图书馆书籍丢失如何赔偿？</summary><p>按图书原价 2-5 倍赔偿，或自行购买同款新书归还。</p></details>
+        <details><summary>校园卡丢失怎么补办？</summary><p>至西区崇雅楼或东区笃学楼卡务中心挂失，12 元工本费，次日领取新卡。</p></details>
+        <details><summary>校企计算机专业能转专业吗？</summary><p>招生章程明确：计算机科学与技术（科大讯飞）入学后禁止转专业。</p></details>
+      </div></div>
+    </section>
+    <section class="result" id="results"><div class="section-head"><div><h2>检索结果</h2><p id="resultHint"></p></div></div><div class="result-grid" id="resultGrid"></div></section>
   </main>
-</div>
-
-<footer>
-  <p class="foot-title">遵义师范学院一校一信息知识库平台</p>
-  <p>贵州省遵义市新蒲新区大学城&nbsp;&nbsp;|&nbsp;&nbsp;服务时间：周一至周五 8:30–17:30</p>
-  <p>
-    <a href="#top">返回学校官网</a>
-    <span class="divider">·</span>
-    <a href="#top">黔ICP备XXXXXXXX号</a>
-  </p>
-</footer>
-
-<button class="to-top" id="toTopBtn" aria-label="回到顶部">↑</button>
-
-<script src="assets/main.js"></script>
+  <footer><div class="foot-inner"><p><span class="source">资料依据：</span>《遵义师范学院一校一信息知识库手册（2026版）》</p><p>信息可能随学校政策调整，请以学校最新官方通知为准。</p></div></footer>
+  <script>
+    const cards=[...document.querySelectorAll('.card')], search=document.querySelector('#search'), results=document.querySelector('#results'), grid=document.querySelector('#resultGrid'), hint=document.querySelector('#resultHint');
+    const updateProgress=()=>{const n=[...document.querySelectorAll('.check input:checked')].length;document.querySelector('#progress').textContent=`${n} / 6 已完成`;localStorage.setItem('zync-checks',JSON.stringify([...document.querySelectorAll('.check input')].map(x=>x.checked)))};
+    const saved=JSON.parse(localStorage.getItem('zync-checks')||'[]');document.querySelectorAll('.check input').forEach((x,i)=>{x.checked=!!saved[i];x.addEventListener('change',updateProgress)});updateProgress();
+    function runSearch(value){const q=value.trim().toLowerCase();if(!q){results.classList.remove('show');cards.forEach(c=>c.classList.remove('hidden'));return}const matched=cards.filter(c=>(c.innerText+' '+c.dataset.tags).toLowerCase().includes(q));cards.forEach(c=>c.classList.toggle('hidden',!matched.includes(c)));grid.innerHTML=matched.length?matched.map(c=>`<div class="result-item"><b>${c.querySelector('h3').textContent}</b><br>${c.querySelector('p').textContent}</div>`).join(''):'<div class="result-item">没有找到直接匹配的信息。可尝试“学费”“报到”“宿舍”“转专业”等关键词。</div>';hint.textContent=`“${value}”的相关内容`;results.classList.add('show');document.querySelector('#info').scrollIntoView({behavior:'smooth',block:'start'})}
+    document.querySelector('#searchBtn').onclick=()=>runSearch(search.value);search.addEventListener('keydown',e=>{if(e.key==='Enter')runSearch(search.value)});
+    document.querySelectorAll('.quick button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.quick button').forEach(x=>x.classList.remove('active'));b.classList.add('active');search.value=b.dataset.filter;runSearch(b.dataset.filter)});
+  </script>
 </body>
 </html>
